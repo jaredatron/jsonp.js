@@ -4,32 +4,12 @@
 
   this.JSONP = JSONP = {};
 
-  // Usage:
-  //   new JSONP.Request('http://www.yahoo.com/search',{
-  //     timeout: 10, // timeout in seconds (optional)
-  //     params:{
-  //       qs: 'something fun'
-  //     },
-  //     onSuccess: function(data, jsonpRequestObject){
-  //       console.log(data);
-  //     },
-  //     onTimeout: function(jsonpRequestObject){
-  //       //throw hands up
-  //     },
-  //     onFailure: function(jsonpRequestObject){
-  //       //exactly the same as onTimeout
-  //     },
-  //     onComplete: function(jsonpRequestObject){
-  //       //called on success or timeout
-  //     }
-  //   })
-
   JSONP.Request = Class.create({
     callbackName: 'callback',
     DEFAULT_OPTIONS:{
       requestNow: true,
       asynchronous: true,
-      timeout: 10, // defualts to 10 seconds
+      timeout: 10,
       onCreate:   Prototype.emptyFunction,
       onSuccess:  Prototype.emptyFunction,
       onTimeout:  Prototype.emptyFunction,
@@ -49,7 +29,7 @@
       if (console.log) return Function.prototype.apply.apply(console.log, [console,arguments]);
     },
     request: function(){
-      // setup time out handling
+
       var timed_out = false,
           timeout = null,
           timeout_handler = function(){
